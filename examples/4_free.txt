@@ -1,0 +1,8 @@
+# Команда: free -b
+# Дата выполнения: 2025-08-09 17:02:14.177902
+# Exit code: 0
+
+=== STDOUT ===
+              total        used        free      shared  buff/cache   available
+Mem:     1500381184   700715008    73797632   266416128   725868544   370593792
+Swap:             0           0           0

@@ -1,0 +1,18 @@
+# Zabbix Server Configuration (filtered)
+# Дата выполнения: 2025-08-09 17:02:43.357282
+# Исходный файл: /etc/zabbix/zabbix_server.conf
+# Исключены чувствительные параметры: DBUser, StatsAllowedIP, DBHost, DBPassword, VaultURL, DBName, VaultToken
+
+LogFile=/var/log/zabbix/zabbix_server.log
+LogFileSize=0
+PidFile=/run/zabbix/zabbix_server.pid
+SocketDir=/run/zabbix
+DBSchema=public
+DBPort=5432
+SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
+CacheSize=256M
+TrendCacheSize=32M
+Timeout=4
+FpingLocation=/usr/bin/fping
+Fping6Location=/usr/bin/fping6
+LogSlowQueries=3000

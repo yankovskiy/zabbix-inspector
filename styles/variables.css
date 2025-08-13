@@ -1,0 +1,91 @@
+/* ===================
+   CSS ПЕРЕМЕННЫЕ
+=================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background: #1a1d23;
+    color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+:root {
+    --bg-primary: #1a1d23;
+    --bg-secondary: #242932;
+    --bg-tertiary: #343a40;
+    --card-bg: #2c3e50;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-muted: #6c757d;
+    --border-color: #495057;
+    --border-color-strong: #6c757d;
+    --primary-color: #a0cce8;
+    --primary-light: #1c2331;
+    --success-color: #51cf66;
+    --warning-color: #ffd43b;
+    --danger-color: #ff6b6b;
+    --hover-color: #343a40;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --chart-grid: rgba(248, 249, 250, 0.1);
+    --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* ===================
+   АНИМАЦИИ
+=================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===================
+   УТИЛИТЫ
+=================== */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.text-xs {
+    font-size: 11px;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mt-2 {
+    margin-top: 8px;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}

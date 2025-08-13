@@ -1,0 +1,140 @@
+# Команда: /usr/sbin/zabbix_server -c /tmp/tmpzj9u0b4a_zabbix.conf -R diaginfo
+# Дата выполнения: 2025-08-09 17:02:14.082435
+# Exit code: 0
+
+=== STDOUT ===
+== history cache diagnostic information ==
+Items:0 values:0 time:0.000056
+Memory.data:
+  size: free:16776832 used:0
+  chunks: free:1 used:0 min:16776832 max:16776832
+    buckets:
+      256+:1
+Memory.index:
+  size: free:3210320 used:983456
+  chunks: free:4 used:5 min:8072 max:2279816
+    buckets:
+      256+:4
+Top.values:
+==
+== preprocessing diagnostic information ==
+Values:0 done:0 queued:0 processing:0 pending:0 time:0.000398
+Top.values:
+Top.oldest.preproc.values:
+==
+== locks diagnostic information ==
+Locks:
+  ZBX_MUTEX_LOG:0x7f095cb6f000
+  ZBX_MUTEX_CACHE:0x7f095cb6f028
+  ZBX_MUTEX_TRENDS:0x7f095cb6f050
+  ZBX_MUTEX_CACHE_IDS:0x7f095cb6f078
+  ZBX_MUTEX_SELFMON:0x7f095cb6f0a0
+  ZBX_MUTEX_CPUSTATS:0x7f095cb6f0c8
+  ZBX_MUTEX_DISKSTATS:0x7f095cb6f0f0
+  ZBX_MUTEX_VALUECACHE:0x7f095cb6f118
+  ZBX_MUTEX_VMWARE:0x7f095cb6f140
+  ZBX_MUTEX_SQLITE3:0x7f095cb6f168
+  ZBX_MUTEX_PROCSTAT:0x7f095cb6f190
+  ZBX_MUTEX_PROXY_HISTORY:0x7f095cb6f1b8
+  ZBX_MUTEX_MODBUS:0x7f095cb6f1e0
+  ZBX_MUTEX_TREND_FUNC:0x7f095cb6f208
+  ZBX_RWLOCK_CONFIG:0x7f095cb6f230
+  ZBX_RWLOCK_CONFIG_HISTORY:0x7f095cb6f268
+  ZBX_RWLOCK_VALUECACHE:0x7f095cb6f2a0
+==
+== value cache diagnostic information ==
+Items:1622 values:86127 mode:0 time:0.000205
+Memory:
+  size: free:6235088 used:1963872
+  chunks: free:7 used:11823 min:32 max:6232512
+    buckets:
+      32:2
+      224:1
+      256+:4
+Top.values:
+  itemid:44758 values:106 request.values:100
+  itemid:45893 values:106 request.values:100
+  itemid:115136 values:106 request.values:100
+  itemid:121072 values:106 request.values:100
+  itemid:45185 values:106 request.values:100
+  itemid:129764 values:106 request.values:100
+  itemid:110578 values:106 request.values:100
+  itemid:46913 values:106 request.values:100
+  itemid:121496 values:106 request.values:100
+  itemid:125206 values:106 request.values:100
+  itemid:86286 values:106 request.values:100
+  itemid:45047 values:106 request.values:100
+  itemid:122874 values:106 request.values:100
+  itemid:99485 values:106 request.values:100
+  itemid:113334 values:106 request.values:100
+  itemid:128280 values:106 request.values:100
+  itemid:129234 values:106 request.values:100
+  itemid:46979 values:106 request.values:100
+  itemid:88618 values:106 request.values:100
+  itemid:99591 values:106 request.values:100
+  itemid:99167 values:106 request.values:100
+  itemid:84166 values:106 request.values:100
+  itemid:47159 values:106 request.values:100
+  itemid:93706 values:106 request.values:100
+  itemid:46991 values:106 request.values:100
+Top.request.values:
+  itemid:44758 values:106 request.values:100
+  itemid:45893 values:106 request.values:100
+  itemid:115136 values:106 request.values:100
+  itemid:121072 values:106 request.values:100
+  itemid:45185 values:106 request.values:100
+  itemid:129764 values:106 request.values:100
+  itemid:110578 values:106 request.values:100
+  itemid:46913 values:106 request.values:100
+  itemid:121496 values:106 request.values:100
+  itemid:125206 values:106 request.values:100
+  itemid:86286 values:106 request.values:100
+  itemid:45047 values:106 request.values:100
+  itemid:122874 values:106 request.values:100
+  itemid:99485 values:106 request.values:100
+  itemid:113334 values:106 request.values:100
+  itemid:128280 values:106 request.values:100
+  itemid:129234 values:106 request.values:100
+  itemid:46979 values:106 request.values:100
+  itemid:88618 values:106 request.values:100
+  itemid:99591 values:106 request.values:100
+  itemid:99167 values:106 request.values:100
+  itemid:84166 values:106 request.values:100
+  itemid:47159 values:106 request.values:100
+  itemid:93706 values:106 request.values:100
+  itemid:46991 values:106 request.values:100
+==
+== LLD diagnostic information ==
+Rules:494 values:494 time:0.000322
+Top.values:
+  itemid:101950 values:1
+  itemid:45912 values:1
+  itemid:45822 values:1
+  itemid:115561 values:1
+  itemid:101208 values:1
+  itemid:46818 values:1
+  itemid:45642 values:1
+  itemid:45570 values:1
+  itemid:104153 values:1
+  itemid:46620 values:1
+  itemid:90739 values:1
+  itemid:92859 values:1
+  itemid:123723 values:1
+  itemid:46950 values:1
+  itemid:132203 values:1
+  itemid:45600 values:1
+  itemid:130613 values:1
+  itemid:113441 values:1
+  itemid:45942 values:1
+  itemid:111321 values:1
+  itemid:107929 values:1
+  itemid:128281 values:1
+  itemid:111003 values:1
+  itemid:45810 values:1
+  itemid:45150 values:1
+==
+== alerting diagnostic information ==
+Alerts:0 time:0.000231
+Media.alerts:
+Source.alerts:
+==

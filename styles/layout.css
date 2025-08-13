@@ -1,0 +1,284 @@
+/* ===================
+   ОСНОВНАЯ РАЗМЕТКА
+=================== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.app-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sidebar-header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.chart-description {
+    font-size: 12px;
+}
+
+.sidebar-header .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* ===================
+   ZABBIX URL СЕКЦИЯ
+=================== */
+.zabbix-url-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.url-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.url-input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.url-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ===================
+   НАВИГАЦИЯ
+=================== */
+.nav-menu {
+    padding: 16px 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+    background: var(--hover-color);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.nav-item .icon {
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+/* ===================
+   ПОДВАЛ САЙДБАРА
+=================== */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.copyright {
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.github-link:hover {
+    background: var(--hover-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.github-link .icon {
+    font-size: 14px;
+}
+
+/* ===================
+   ОСНОВНОЙ КОНТЕНТ
+=================== */
+.main-content {
+    flex: 1;
+    background: var(--bg-primary);
+    overflow-y: auto;
+}
+
+.page {
+    display: none;
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.collection-info {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: rgba(77, 171, 247, 0.1);
+    border: 1px solid rgba(77, 171, 247, 0.2);
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+}
+
+.collection-time {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.collection-time span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.requirements-content {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.requirements-list {
+    margin: 16px 0;
+    padding-left: 20px;
+    color: var(--text-secondary);
+}
+
+.requirements-list li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.requirements-list li strong {
+    color: var(--text-primary);
+}
+
+/* ===================
+   АДАПТИВНОСТЬ ДЛЯ РАЗМЕТКИ
+=================== */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        order: 2;
+    }
+
+    .main-content {
+        order: 1;
+    }
+
+    .page {
+        padding: 20px 16px;
+    }
+
+    .sidebar-header {
+        padding: 16px;
+    }
+
+    .nav-item {
+        padding: 10px 16px;
+    }
+
+    .url-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .url-btn {
+        min-width: auto;
+    }
+}

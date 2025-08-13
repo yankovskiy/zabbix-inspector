@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ Zabbix - Темная тема</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link href="styles/variables.css" rel="stylesheet"/>
+    <link href="styles/layout.css" rel="stylesheet"/>
+    <link href="styles/components.css" rel="stylesheet"/>
+    <link href="styles/tables.css" rel="stylesheet"/>
+    <link href="styles/tabs.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Боковая панель -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-branding">
+                    <img src="logo.png" alt="Zabbix Inspector" class="app-logo">
+                    <div class="app-info">
+                        <h1 id="appTitle"><!-- Заполнение из constants.js --></h1>
+                        <div class="subtitle" id="appVersion"><!-- Заполнение из constants.js --></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <a href="#" class="nav-item active" data-page="upload">
+                    <span class="icon">📁</span>
+                    Загрузка данных
+                </a>
+                <a href="#" class="nav-item" data-page="overview">
+                    <span class="icon">🖥️</span>
+                    Обзор системы
+                </a>
+                <a href="#" class="nav-item" data-page="performance">
+                    <span class="icon">⚡</span>
+                    Производительность
+                </a>
+                <a href="#" class="nav-item" data-page="vmstat">
+                    <span class="icon">📊</span>
+                    Vmstat
+                </a>
+                <a href="#" class="nav-item" data-page="processes">
+                    <span class="icon">🧮</span>
+                    Процессы Zabbix
+                </a>
+                <a href="#" class="nav-item" data-page="diagnostics">
+                    <span class="icon">🔧</span>
+                    Diaginfo
+                </a>
+                <a href="#" class="nav-item" data-page="config">
+                    <span class="icon">⚙️</span>
+                    Конфигурация
+                </a>
+                <a href="#" class="nav-item" data-page="instructions">
+                    <span class="icon">📖</span>
+                    Руководство
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="footer-info">
+                    <div class="copyright" id="copyright"><!-- Заполнение из constants.js --></div>
+                    <a href="#" class="github-link" id="githubLink" target="_blank">
+                        <span class="icon">🔗</span>
+                        <span class="link-text">GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Страница загрузки -->
+            <div id="upload" class="page active">
+                <div class="page-header">
+                    <h1 class="page-title">Загрузка диагностических данных</h1>
+                    <p class="page-subtitle">Загрузите ZIP архив с диагностическими файлами Zabbix сервера</p>
+                </div>
+
+                <div class="upload-section">
+                    <h3 class="upload-title">Загрузите ZIP архив с диагностикой</h3>
+                    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">📦</div>
+                        <div class="upload-text">Нажмите для выбора ZIP файла или перетащите его сюда</div>
+                        <div class="upload-hint">Поддерживаются ZIP архивы с файлами диагностики</div>
+                    </div>
+                    <input type="file" id="fileInput" accept=".zip" />
+
+                    <div class="file-info" id="fileInfo">
+                        <div class="file-info-item">
+                            <strong>Файл загружен:</strong> <span id="fileName"></span>
+                        </div>
+                        <div class="file-info-item">
+                            <strong>Размер:</strong> <span id="fileSize"></span>
+                        </div>
+                        <div class="file-info-item">
+                            <strong>Файлов в архиве:</strong> <span id="fileCount"></span>
+                        </div>
+                        <div class="file-info-item">
+                            <strong>Версия сборщика:</strong> <span id="collectorVersion"></span>
+                        </div>
+                    </div>
+
+                    <div class="message error-message" id="errorMessage"></div>
+                    <div class="message processing-message" id="processingMessage">
+                        <div class="loading-spinner"></div>
+                        Обработка архива...
+                    </div>
+
+                    <button class="reset-btn" onclick="window.zabbixAnalyzer?.resetAnalysis()" id="resetBtn">
+                        🔄 Загрузить новый архив
+                    </button>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">📋 Требования к архиву</h3>
+                    <div class="requirements-content">
+                        <p>ZIP архив должен содержать следующие файлы:</p>
+                        <ul class="requirements-list">
+                            <li><strong>version.txt</strong> - версия сборщика диагностических данных</li>
+                            <li><strong>diaginfo.txt</strong> - диагностическая информация Zabbix</li>
+                            <li><strong>zabbix_stats.txt</strong> - статистика процессов Zabbix</li>
+                            <li><strong>vmstat.txt</strong> - вывод команды vmstat</li>
+                            <li><strong>ps_aux.txt</strong> - список процессов Zabbix</li>
+                            <li><strong>free.txt</strong> - информация о памяти</li>
+                            <li><strong>zabbix_config.txt</strong> - конфигурация Zabbix</li>
+                            <li><strong>os_release.txt</strong> - Информация о сервере</li>
+                            <li><strong>uptime.txt</strong> - время работы системы и загрузка</li>
+                            <li><strong>nproc.txt</strong> - количество процессорных ядер</li>
+                            <li><strong>cpuinfo.txt</strong> - информация о процессоре</li>
+                            <li><strong>final.txt</strong> - дата и время завершения сбора диагностической информации</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Страница обзора -->
+            <div id="overview" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Обзор системы</h1>
+                    <p class="page-subtitle">Общее состояние Zabbix сервера и ключевые метрики</p>
+                    <div class="collection-info" id="collectionInfo" style="display: none;">
+                        <span class="collection-time">📅 Диагностика собрана: <span id="collectionDateTime">загрузите данные</span></span>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid" id="overviewDashboard">
+                    <!-- Cards will be generated by overview-templates.js -->
+                </div>
+            </div>
+
+            <!-- Страница производительности -->
+            <div id="performance" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Производительность</h1>
+                    <p class="page-subtitle">Метрики загрузки процессов и системных ресурсов</p>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">Использование CPU (%)</h3>
+                        <canvas id="cpuChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Потребление памяти</h3>
+                        <canvas id="memoryChart"></canvas>
+                        <div class="chart-description">
+                            <p><strong>Shared:</strong> память, используемая несколькими процессами</p>
+                            <p><strong>Cache:</strong> кэш файловой системы для ускорения доступа к данным</p>
+                            <p><strong>Available vs Free:</strong> Available учитывает память, которая может быть освобождена из кэша, в отличие от просто свободной памяти</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Утилизация процессов Zabbix (%)</h3>
+                        <canvas id="processChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Утилизация кэшей Zabbix (%)</h3>
+                        <canvas id="cacheChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Страница диагностики -->
+            <div id="diagnostics" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Diaginfo</h1>
+                    <p class="page-subtitle">Детальная диагностическая информация Zabbix Server</p>
+                </div>
+
+                <!-- URL настройки -->
+                <div class="zabbix-url-section">
+                    <div class="url-input-group">
+                        <label for="zabbixUrl">Zabbix Front URL:</label>
+                        <div class="url-control">
+                            <input type="text" id="zabbixUrl" value="" class="url-input">
+                            <span id="zabbixUrlDisplay" class="url-display" style="display: none;"></span>
+                            <button id="urlToggleBtn" class="url-btn">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Горизонтальные вкладки -->
+                <div class="diaginfo-tabs" id="diaginfoTabs">
+                    <button class="tab-button active" data-tab="history">📚 Кэш истории</button>
+                    <button class="tab-button" data-tab="value">🗂️ Кэш значений</button>
+                    <button class="tab-button" data-tab="preprocessing">⚙️ Препроцессинг</button>
+                    <button class="tab-button" data-tab="lld">🔄 LLD</button>
+                    <button class="tab-button" data-tab="alerting">🚨 Аллертинг</button>
+                    <button class="tab-button" data-tab="locks">🔒 Блокировки</button>
+                </div>
+
+                <!-- Контент вкладок -->
+                <div class="tab-content-container" id="diaginfoTabContent">
+                    <!-- Контент будет добавлен динамически -->
+                </div>
+            </div>
+
+            <!-- Страница Vmstat -->
+            <div id="vmstat" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Vmstat</h1>
+                    <p class="page-subtitle">Анализ данных vmstat - виртуальная память и системные метрики</p>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">🖥️ Загрузка CPU (%)</h3>
+                        <canvas id="vmstatCpuChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">💾 Виртуальная память (MB)</h3>
+                        <canvas id="vmstatMemoryChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">💾 Дисковый I/O</h3>
+                        <canvas id="vmstatIoChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">🔄 Системная активность</h3>
+                        <canvas id="vmstatSystemChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Страница процессов Zabbix -->
+            <div id="processes" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Процессы Zabbix</h1>
+                    <p class="page-subtitle">Анализ процессов Zabbix сервера с детальной информацией</p>
+                </div>
+
+                <div class="processes-controls">
+                    <div class="filter-group">
+                        <label for="processTypeFilter">Тип процесса:</label>
+                        <select id="processTypeFilter">
+                            <option value="">Все типы</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="topFilter">Топ процессы:</label>
+                        <select id="topFilter">
+                            <option value="">Без фильтра</option>
+                            <option value="cpu">Top 10 по CPU</option>
+                            <option value="rss">Top 10 по RSS</option>
+                            <option value="vsz">Top 10 по VSZ</option>
+                        </select>
+                    </div>
+
+                    <button class="reset-filters-btn" id="resetFiltersBtn">🔄 Сброс фильтров</button>
+                </div>
+
+                <div class="processes-table-container">
+                    <table class="processes-table" id="processesTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="user">USER <span class="sort-icon">↕</span></th>
+                                <th data-sort="pid">PID <span class="sort-icon">↕</span></th>
+                                <th data-sort="cpu">%CPU <span class="sort-icon">↕</span></th>
+                                <th data-sort="mem">%MEM <span class="sort-icon">↕</span></th>
+                                <th data-sort="vsz">VSZ <span class="sort-icon">↕</span></th>
+                                <th data-sort="rss">RSS <span class="sort-icon">↕</span></th>
+                                <th data-sort="tty">TTY <span class="sort-icon">↕</span></th>
+                                <th data-sort="stat">STAT <span class="sort-icon">↕</span></th>
+                                <th data-sort="start">START <span class="sort-icon">↕</span></th>
+                                <th data-sort="time">TIME <span class="sort-icon">↕</span></th>
+                                <th data-sort="command">COMMAND <span class="sort-icon">↕</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="processesTableBody">
+                            <tr>
+                                <td colspan="11" class="no-data">Загрузите диагностические данные для отображения процессов</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Страница конфигурации -->
+            <div id="config" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Конфигурация Zabbix сервера</h1>
+                    <p class="page-subtitle">Параметры конфигурации из файла zabbix_server.conf</p>
+                </div>
+
+                <div class="config-container">
+                    <div class="config-header">
+                        <div class="config-search">
+                            <input type="text" id="configSearch" placeholder="🔍 Поиск по параметрам..." class="config-search-input">
+                        </div>
+                        <div class="memory-info" id="memoryInfo">
+                            <div class="memory-allocation">
+                                <span class="memory-label">Резерв памяти:</span>
+                                <span class="memory-total" id="memoryTotal">загрузите данные</span>
+                                (<span class="memory-explicit" id="memoryExplicit">0</span> + 
+                                <span class="memory-default" id="memoryDefault">0</span>).
+                                На сервере: <span class="memory-server" id="memoryServer">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-table-container">
+                        <table class="config-table" id="configTable">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="parameter">
+                                        Параметр <span class="sort-icon">↕</span>
+                                    </th>
+                                    <th class="sortable" data-sort="value">
+                                        Значение <span class="sort-icon">↕</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="configTableBody">
+                                <tr>
+                                    <td colspan="2" class="no-data">Загрузите диагностические данные для отображения конфигурации</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Страница инструкции -->
+            <div id="instructions" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Руководство по использованию</h1>
+                    <p class="page-subtitle">Руководство по сбору и анализу диагностических данных Zabbix сервера</p>
+                </div>
+
+                <div class="instructions-content">
+                    <!-- Описание сервиса -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">О сервисе</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Zabbix Inspector</strong> — это веб-приложение для анализа диагностических данных Zabbix серверов. Инструмент предоставляет интерактивные графики и таблицы для исследования производительности системы, состояния процессов, использования кэшей и других критических метрик.</p>
+                            
+                            <p>Приложение работает полностью в браузере пользователя без передачи данных на внешние серверы, что обеспечивает максимальную безопасность конфиденциальной информации.</p>
+                        </div>
+                    </div>
+
+                    <!-- Безопасность -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">⚠️</div>
+                            <div class="card-title">Безопасность данных</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Все данные обрабатываются локально:</strong></p>
+                            <ul>
+                                <li>ZIP-архивы анализируются исключительно в браузере пользователя</li>
+                                <li>Никакие данные не передаются на внешние серверы</li>
+                                <li>Приложение может работать без подключения к интернету</li>
+                                <li>Вся обработка выполняется с помощью JavaScript в песочнице браузера</li>
+                            </ul>
+                            
+                            <p><strong>Дополнительная защита:</strong></p>
+                            <ul>
+                                <li>Python-сборщик автоматически фильтрует чувствительные параметры конфигурации</li>
+                                <li>Исключаются пароли баз данных, ключи шифрования и другие секреты</li>
+                                <li>Сохраняются только технические параметры, необходимые для диагностики</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Сбор данных -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Сбор диагностических данных</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Использование Python сборщика:</strong></p>
+                            
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Базовое использование:</span>
+                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py')">
+                                        <span class="copy-icon">📋</span>
+                                        <span class="copy-text">Копировать</span>
+                                    </button>
+                                </div>
+                                <code>python3 python/zdiag.py</code>
+                            </div>
+                            
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>С указанием директории:</span>
+                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py --output-dir /tmp/my-zabbix-diag')">
+                                        <span class="copy-icon">📋</span>
+                                        <span class="copy-text">Копировать</span>
+                                    </button>
+                                </div>
+                                <code>python3 python/zdiag.py --output-dir /tmp/my-zabbix-diag</code>
+                            </div>
+                            
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Все параметры:</span>
+                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120')">
+                                        <span class="copy-icon">📋</span>
+                                        <span class="copy-text">Копировать</span>
+                                    </button>
+                                </div>
+                                <code>python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120</code>
+                            </div>
+
+                            <p><strong>Параметры командной строки:</strong></p>
+                            <ul>
+                                <li><code>--output-dir</code> — директория для сохранения результатов (по умолчанию: /tmp/zabbix-diag)</li>
+                                <li><code>--stats-timeout</code> — таймаут для сбора статистики в секундах (по умолчанию: 60)</li>
+                                <li><code>--keep-temp-config</code> — сохранить временный конфигурационный файл</li>
+                                <li><code>--version</code> — получить версию сборщика</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Требования -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Системные требования</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Для сбора данных:</strong></p>
+                            <ul>
+                                <li>Python 3.7 или выше</li>
+                                <li>Операционная система Linux</li>
+                                <li>Доступ к процессам Zabbix server</li>
+                                <li>Права на чтение конфигурационных файлов Zabbix</li>
+                            </ul>
+
+                            <p><strong>Для анализа данных:</strong></p>
+                            <ul>
+                                <li>Современный веб-браузер с поддержкой ES6 модулей</li>
+                                <li>JavaScript должен быть включен</li>
+                                <li>Минимум 1 ГБ оперативной памяти для обработки больших архивов</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Местоположение файлов -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Местоположение файлов</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Результаты сбора:</strong></p>
+                            <ul>
+                                <li>ZIP-архив: <code>/tmp/{hostname}.zip</code></li>
+                                <li>Сырые данные:<code>{output-dir}/</code>. По умолчанию: <code>/tmp/zabbix-diag</code></li>
+                            </ul>
+
+                            <p><strong>Содержимое архива:</strong></p>
+                            <ul>
+                                <li><code>version.txt</code> — версия сборщика диагностических данных</li>
+                                <li><code>diaginfo.txt</code> — диагностическая информация Zabbix</li>
+                                <li><code>zabbix_stats.txt</code> — статистика процессов Zabbix</li>
+                                <li><code>vmstat.txt</code> — вывод команды vmstat</li>
+                                <li><code>ps_aux.txt</code> — список процессов Zabbix</li>
+                                <li><code>free.txt</code> — информация о памяти</li>
+                                <li><code>zabbix_config.txt</code> — конфигурация Zabbix</li>
+                                <li><code>os_release.txt</code> — информация о сервере</li>
+                                <li><code>uptime.txt</code> — время работы системы и загрузка</li>
+                                <li><code>nproc.txt</code> — количество процессорных ядер</li>
+                                <li><code>cpuinfo.txt</code> — информация о процессоре</li>
+                                <li><code>final.txt</code> — дата и время завершения сбора диагностической информации</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Процесс анализа -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Процесс анализа</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p><strong>Пошаговая инструкция:</strong></p>
+                            <ol>
+                                <li>Запустите Python сборщик на Zabbix сервере</li>
+                                <li>Дождитесь создания ZIP архива</li>
+                                <li>Скопируйте архив на рабочую станцию</li>
+                                <li>Откройте Zabbix Inspector в браузере</li>
+                                <li>Загрузите ZIP архив через интерфейс</li>
+                                <li>Изучите данные в соответствующих разделах приложения</li>
+                            </ol>
+
+                            <p><strong>Разделы анализа:</strong></p>
+                            <ul>
+                                <li><em>Обзор системы</em> — общее состояние сервера и ключевые метрики</li>
+                                <li><em>Производительность</em> — графики CPU, памяти и утилизации процессов</li>
+                                <li><em>Vmstat</em> — детальный анализ системных метрик</li>
+                                <li><em>Процессы Zabbix</em> — таблица процессов с фильтрацией</li>
+                                <li><em>Diaginfo</em> — подробная диагностика кэшей и очередей</li>
+                                <li><em>Конфигурация</em> — параметры zabbix_server.conf</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Демо -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Демонстрационный архив</div>
+                        </div>
+                        <div class="instructions-text">
+                            <p>Для ознакомления с возможностями сервиса вы можете скачать демонстрационный архив и загрузить его в интерфейс приложения.</p>
+                            
+                            <div class="code-block">
+                                <div class="code-header">Демонстрационные данные:</div>
+                                <code><a href="examples/demo.zip" download="demo.zip">Скачать demo.zip</a></code>
+                            </div>
+                            
+                            <p><strong>Содержит:</strong></p>
+                            <ul>
+                                <li>Реальные диагностические данные Zabbix сервера</li>
+                                <li>Все типы файлов для полной демонстрации функций</li>
+                                <li>Безопасные данные без конфиденциальной информации</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+    <script src="js/inline-scripts.js"></script>
+    <script src="js/overview-templates.js"></script>
+</body>
+</html>
