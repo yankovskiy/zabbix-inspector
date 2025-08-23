@@ -135,7 +135,7 @@ export class FileUploader {
         
         // Ищем файл по имени в архиве
         for (const [filePath, file] of Object.entries(zipContent.files)) {
-            if (filePath.endsWith('0_version.txt') && !file.dir) {
+            if (filePath.endsWith('version.txt') && !file.dir) {
                 versionFile = file;
                 break;
             }
