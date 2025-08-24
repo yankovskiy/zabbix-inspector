@@ -24,5 +24,11 @@ SENSITIVE_CONFIG_PARAMS = {
     'VaultURL', 'VaultToken'
 }
 
+# Database retry configuration
+DB_RETRY_ATTEMPTS = 3
+DB_RETRY_DELAY_SECONDS = 60
+DB_CONNECTION_TIMEOUT = 30
+DB_QUERY_TIMEOUT = 300
+
 # Команды для сбора системной информации
 VMSTAT_COMMAND = "vmstat 1 30"

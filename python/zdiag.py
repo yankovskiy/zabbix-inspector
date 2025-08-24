@@ -34,8 +34,19 @@ class ZabbixDiagnostic:
         self.command_runner = CommandRunner(self.output_dir)
         self.system_collectors = SystemCollectors(self.command_runner)
         self.zabbix_collectors = ZabbixCollectors(self.command_runner, self.output_manager)
+        
+        # Инициализация database collector (ленивая загрузка)
+        self._database_collector = None
 
-    def run_all_tasks(self):
+    @property
+    def database_collector(self):
+        """Ленивая инициализация database collector"""
+        if self._database_collector is None:
+            from modules.database_collector import DatabaseCollector
+            self._database_collector = DatabaseCollector(self.output_dir)
+        return self._database_collector
+
+    def run_all_tasks(self, enable_database=False, sql_dir=None):
         """Выполнение всех задач по сбору диагностической информации"""
         self.logger.info("=== Начинаем сбор диагностической информации Zabbix ===")
 
@@ -66,16 +77,22 @@ class ZabbixDiagnostic:
         final_success = self.output_manager.write_completion_time()
         self.logger.info(f"Final: {'успешно' if final_success else 'ошибка'}")
 
-        # 5. Создание архива
+        # 5. Сбор данных из базы данных (если включен)
+        database_results = {}
+        if enable_database and sql_dir:
+            print("--- Сбор данных из базы данных ---")
+            database_results = self.database_collector.collect_database_data(Path(sql_dir))
+
+        # 6. Создание архива
         print("--- Создание архива ---")
         archive_success, archive_path = self.output_manager.create_zip_archive()
 
         # Итоговый отчет
         self._print_summary_report(version_success, zabbix_results, system_results, 
-                                 final_success, archive_success, archive_path)
+                                 database_results, final_success, archive_success, archive_path)
 
     def _print_summary_report(self, version_success, zabbix_results, system_results, 
-                             final_success, archive_success, archive_path):
+                             database_results, final_success, archive_success, archive_path):
         """Печать итогового отчета о выполнении задач"""
         print("\n=== Итоговый отчет ===")
         
@@ -99,6 +116,11 @@ class ZabbixDiagnostic:
             total_tasks += 1
             if result.get("success", False):
                 successful_tasks += 1
+        
+        # Database tasks
+        if database_results:
+            total_tasks += database_results.get('tasks_total', 0)
+            successful_tasks += database_results.get('tasks_successful', 0)
                 
         # Final
         total_tasks += 1
@@ -128,6 +150,17 @@ class ZabbixDiagnostic:
             task_name = system_task_names.get(name, f"System {name}")
             task_list.append((task_name, result.get("success", False)))
         
+        # Database tasks (если есть)
+        if database_results:
+            task_list.append((f"Database Tasks ({database_results['tasks_successful']}/{database_results['tasks_total']})", 
+                             database_results['tasks_failed'] == 0))
+            
+            # Дополнительная информация о БД
+            if database_results.get('csv_files_created', 0) > 0:
+                size_mb = database_results.get('total_data_size', 0) / (1024 * 1024)
+                print(f"   CSV файлов создано: {database_results['csv_files_created']}")
+                print(f"   Размер данных БД: {size_mb:.2f} MB")
+
         # Final - всегда последняя
         task_list.append(("Final", final_success))
         
@@ -169,12 +202,43 @@ def main():
         action='store_true',
         help='Вывести версию скрипта'
     )
+    parser.add_argument(
+        '--db-init',
+        action='store_true',
+        help='Инициализация конфигурации подключения к базе данных Zabbix'
+    )
+    parser.add_argument(
+        '--db',
+        action='store_true',
+        help='Включить сбор диагностических данных из базы данных Zabbix'
+    )
+    parser.add_argument(
+        '--sql-dir',
+        default='sql',
+        help='Директория с SQL файлами (по умолчанию: python/sql)'
+    )
 
     args = parser.parse_args()
 
     if args.version:
         print(VERSION)
         sys.exit(0)
+
+    # Обработка database-специфичных аргументов
+    if args.db_init:
+        # Инициализация конфигурации БД
+        from modules.database_collector import DatabaseCollector
+        db_collector = DatabaseCollector(Path(args.output_dir))
+        success = db_collector.init_database_config()
+        sys.exit(0 if success else 1)
+        
+    if args.db:
+        # Проверяем наличие SQL директории
+        sql_dir_path = Path(args.sql_dir)
+        if not sql_dir_path.exists():
+            print(f"Директория SQL не найдена: {sql_dir_path}")
+            print("Создайте директорию и поместите в неё SQL файлы, или используйте --sql-dir для указания другой директории")
+            sys.exit(1)
 
     # Проверяем права root
     if os.geteuid() != 0:
@@ -188,7 +252,7 @@ def main():
     )
 
     try:
-        diag.run_all_tasks()
+        diag.run_all_tasks(enable_database=args.db, sql_dir=args.sql_dir if args.db else None)
     except KeyboardInterrupt:
         print("\nПрервано пользователем")
         sys.exit(1)

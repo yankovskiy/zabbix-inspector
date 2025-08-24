@@ -58,6 +58,16 @@ class ZabbixConfigManager:
         _, config_path = self.get_zabbix_paths()
         return self.config_reader.get_trapper_port(config_path)
     
+    def get_database_params(self):
+        """
+        Получение параметров подключения к БД из конфигурации Zabbix
+        
+        Returns:
+            dict: Словарь с параметрами БД (DBHost, DBName, DBUser, etc.)
+        """
+        _, config_path = self.get_zabbix_paths()
+        return self.config_reader.get_database_params(config_path)
+    
     def create_temp_config(self, keep_temp=False, timeout=30):
         """
         Создание временного конфиг-файла с измененным Timeout

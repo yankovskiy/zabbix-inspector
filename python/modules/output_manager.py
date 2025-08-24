@@ -146,7 +146,14 @@ class OutputManager:
             self.logger.info(f"Создаем архив: {zip_path}")
 
             with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                # Добавляем все .txt файлы
                 for file_path in self.output_dir.rglob('*.txt'):
+                    arcname = file_path.relative_to(self.output_dir.parent)
+                    zipf.write(file_path, arcname)
+                    self.logger.info(f"Добавлен в архив: {file_path}")
+                
+                # Добавляем все .csv файлы из директории database/
+                for file_path in self.output_dir.rglob('*.csv'):
                     arcname = file_path.relative_to(self.output_dir.parent)
                     zipf.write(file_path, arcname)
                     self.logger.info(f"Добавлен в архив: {file_path}")
