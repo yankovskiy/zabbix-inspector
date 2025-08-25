@@ -11,14 +11,55 @@
 - 📱 **Адаптивный дизайн** - работает на всех устройствах
 - 🌙 **Темная тема** - современный интерфейс
 
+## Сборка и установка
+
+### Локальная сборка
+```bash
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Сборка бинарного файла
+make build
+
+# Результат: dist/zdiag + dist/sql/
+```
+
+### Сборка для разных ОС через Docker
+```bash
+# Сборка для конкретной ОС
+make build-ubuntu20    # Ubuntu 20.04 → dist/zdiag_ubuntu20.04
+make build-ubuntu24    # Ubuntu 24.04 → dist/zdiag_ubuntu24.04
+make build-rhel7       # RHEL 7 → dist/zdiag_rhel7
+make build-rhel8       # RHEL 8 → dist/zdiag_rhel8
+
+# Сборка для всех ОС одновременно
+make build-all-docker
+
+# Очистка артефактов сборки
+make clean
+```
+
+**Требования для Docker-сборки:**
+- Docker или Podman
+- Команды работают одинаково с обеими системами
+
+**Совместимость с Podman:**
+```bash
+# Все команды работают с подстановкой docker → podman
+podman build --target export --output dist/ -f docker/ubuntu-20.04.Dockerfile .
+```
+
 ## Сбор данных
 
 ### Python-скрипт (`python/zdiag.py`)
 Скрипт для сбора диагностических данных с серверов Zabbix:
 
 ```bash
-# Базовый сбор данных
+# Использование исходного Python-скрипта
 python3 python/zdiag.py --output-dir /tmp/zabbix-diag
+
+# Использование скомпилированного бинарника
+./dist/zdiag --output-dir /tmp/zabbix-diag
 
 # Сбор данных с диагностикой базы данных
 python3 python/zdiag.py --db --sql-dir python/sql
