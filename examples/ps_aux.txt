@@ -1,0 +1,55 @@
+# Команда: ps aux | grep zabbix_server
+# Дата выполнения: 2025-08-25 21:21:25.703230
+# Exit code: 0
+
+=== STDOUT ===
+zabbix       827  0.0  0.9 396356 13656 ?        S    20:59   0:00 /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
+zabbix       854  0.0  0.5 121908  8424 ?        S    20:59   0:00 /usr/sbin/zabbix_server: ha manager
+zabbix       879  0.0  0.5 396356  8308 ?        S    20:59   0:00 /usr/sbin/zabbix_server: service manager #1 [processed 8 events, updated 0 event tags, deleted 0 problems, synced 0 service updates, idle 5.064095 sec during 5.065486 sec]
+zabbix       880  0.1  5.4 436672 79132 ?        S    20:59   0:01 /usr/sbin/zabbix_server: configuration syncer [synced configuration in 0.334116 sec, idle 60 sec]
+zabbix       913  0.0  0.5 396356  8220 ?        S    20:59   0:00 /usr/sbin/zabbix_server: alert manager #1 [sent 0, failed 0 alerts, idle 5.016748 sec during 5.016892 sec]
+zabbix       914  0.0  0.3 396356  4572 ?        S    20:59   0:00 /usr/sbin/zabbix_server: alerter #1 started
+zabbix       915  0.0  0.3 396356  4572 ?        S    20:59   0:00 /usr/sbin/zabbix_server: alerter #2 started
+zabbix       916  0.0  0.3 396356  4572 ?        S    20:59   0:00 /usr/sbin/zabbix_server: alerter #3 started
+zabbix       917  0.5  2.2 401012 33516 ?        S    20:59   0:06 /usr/sbin/zabbix_server: preprocessing manager #1 [queued 1, processed 2270 values, idle 5.015617 sec during 5.133570 sec]
+zabbix       918  0.1  0.3 396356  4568 ?        S    20:59   0:02 /usr/sbin/zabbix_server: preprocessing worker #1 started
+zabbix       919  0.1  0.3 396356  4568 ?        S    20:59   0:01 /usr/sbin/zabbix_server: preprocessing worker #2 started
+zabbix       920  0.0  0.3 396356  4568 ?        S    20:59   0:01 /usr/sbin/zabbix_server: preprocessing worker #3 started
+zabbix       921  0.0  0.3 396356  5276 ?        S    20:59   0:00 /usr/sbin/zabbix_server: lld manager #1 [processed 95 LLD rules, idle 5.472872sec during 5.474331 sec]
+zabbix       922  0.8  0.9 398780 14060 ?        S    20:59   0:11 /usr/sbin/zabbix_server: lld worker #1 [processed 46 LLD rules, idle 5.150317 sec during 6.159395 sec]
+zabbix       923  0.8  0.9 398800 14116 ?        S    20:59   0:11 /usr/sbin/zabbix_server: lld worker #2 [processed 48 LLD rules, idle 5.116941 sec during 6.161042 sec]
+zabbix       924  0.0  0.5 396356  8288 ?        S    20:59   0:00 /usr/sbin/zabbix_server: housekeeper [startup idle for 30 minutes]
+zabbix       925  0.0  0.5 396356  8288 ?        S    20:59   0:00 /usr/sbin/zabbix_server: timer #1 [updated 0 hosts, suppressed 0 events in 0.013098 sec, idle 59 sec]
+zabbix       926  0.0  0.5 396356  8284 ?        S    20:59   0:00 /usr/sbin/zabbix_server: http poller #1 [got 0 values in 0.001167 sec, idle 5 sec]
+zabbix       927  0.0  0.5 396356  8412 ?        S    20:59   0:00 /usr/sbin/zabbix_server: discoverer #1 [processed 0 rules in 0.000460 sec, idle 60 sec]
+zabbix       928  0.0  2.0 405400 30420 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history syncer #1 [processed 0 values, 0 triggers in 0.000378 sec, idle 1 sec]
+zabbix       929  0.0  2.0 405384 30280 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history syncer #2 [processed 0 values, 0 triggers in 0.000033 sec, idle 1 sec]
+zabbix       930  0.0  2.0 405372 29356 ?        S    20:59   0:01 /usr/sbin/zabbix_server: history syncer #3 [processed 443 values, 9 triggers in 0.066917 sec, idle 1 sec]
+zabbix       931  0.0  2.0 405388 30180 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history syncer #4 [processed 0 values, 0 triggers in 0.000038 sec, idle 1 sec]
+zabbix       932  0.0  0.5 396356  8396 ?        S    20:59   0:00 /usr/sbin/zabbix_server: escalator #1 [processed 0 escalations in 0.005170 sec, idle 3 sec]
+zabbix       933  0.0  0.5 396356  8396 ?        S    20:59   0:00 /usr/sbin/zabbix_server: proxy poller #1 [exchanged data with 0 proxies in 0.000009 sec, idle 5 sec]
+zabbix       934  0.0  0.3 396356  4612 ?        S    20:59   0:00 /usr/sbin/zabbix_server: self-monitoring [processed data in 0.000054 sec, idle 1 sec]
+zabbix       935  0.0  0.5 396356  8224 ?        S    20:59   0:00 /usr/sbin/zabbix_server: task manager [processed 0 task(s) in 0.001496 sec, idle 5 sec]
+zabbix       936  0.5  1.4 396488 21564 ?        S    20:59   0:06 /usr/sbin/zabbix_server: poller #1 [got 75 values in 0.017005 sec, idle 1 sec]
+zabbix       937  0.5  1.4 396488 21564 ?        S    20:59   0:06 /usr/sbin/zabbix_server: poller #2 [got 74 values in 0.017085 sec, idle 1 sec]
+zabbix       938  0.5  1.4 396488 21576 ?        S    20:59   0:07 /usr/sbin/zabbix_server: poller #3 [got 106 values in 0.016721 sec, idle 1 sec]
+zabbix       939  0.5  1.4 396488 21580 ?        S    20:59   0:07 /usr/sbin/zabbix_server: poller #4 [got 126 values in 0.016856 sec, idle 1 sec]
+zabbix       940  0.5  1.4 396488 21580 ?        S    20:59   0:07 /usr/sbin/zabbix_server: poller #5 [got 62 values in 0.016689 sec, idle 1 sec]
+zabbix       941  0.0  0.4 396356  6052 ?        S    20:59   0:00 /usr/sbin/zabbix_server: unreachable poller #1 [got 0 values in 0.000056 sec, idle 5 sec]
+zabbix       942  0.0  0.5 396408  8412 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trapper #1 [processed data in 0.010234 sec, waiting for connection]
+zabbix       944  0.0  0.7 396408 11480 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trapper #2 [processed data in 0.005074 sec, waiting for connection]
+zabbix       945  0.0  1.5 396408 22080 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trapper #3 [processed data in 0.008131 sec, waiting for connection]
+zabbix       946  0.0  0.5 396408  8412 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trapper #4 [processed data in 0.006446 sec, waiting for connection]
+zabbix       947  0.0  1.3 396408 19704 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trapper #5 [processed data in 0.004506 sec, waiting for connection]
+zabbix       948  0.0  0.3 396356  4628 ?        S    20:59   0:00 /usr/sbin/zabbix_server: icmp pinger #1 [got 0 values in 0.000017 sec, idle 5 sec]
+zabbix       950  0.0  0.5 396356  8236 ?        S    20:59   0:01 /usr/sbin/zabbix_server: alert syncer [queued 0 alerts(s), flushed 0 result(s) in 0.000924 sec, idle 1 sec]
+zabbix       951  0.0  0.5 396356  8464 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history poller #1 [got 0 values in 0.000057 sec, idle 5 sec]
+zabbix       953  0.0  0.5 396356  8464 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history poller #2 [got 0 values in 0.000060 sec, idle 5 sec]
+zabbix       954  0.0  0.5 396356  8464 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history poller #3 [got 0 values in 0.000059 sec, idle 5 sec]
+zabbix       955  0.0  0.5 396356  8464 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history poller #4 [got 0 values in 0.000022 sec, idle 5 sec]
+zabbix       956  0.0  0.5 396356  8464 ?        S    20:59   0:00 /usr/sbin/zabbix_server: history poller #5 [got 0 values in 0.000034 sec, idle 5 sec]
+zabbix       957  0.0  0.5 396356  8288 ?        S    20:59   0:00 /usr/sbin/zabbix_server: availability manager #1 [queued 0, processed 0 values, idle 5.039328 sec during 5.039500 sec]
+zabbix       958  0.0  0.5 396356  8288 ?        S    20:59   0:00 /usr/sbin/zabbix_server: trigger housekeeper [deleted 0 problems records in 0.002100 sec, idle for 60 second(s)]
+zabbix       959  0.0  0.4 396356  5992 ?        S    20:59   0:00 /usr/sbin/zabbix_server: odbc poller #1 [got 0 values in 0.000024 sec, idle 5 sec]
+root        2100  0.0  0.0   2608   532 pts/0    S+   21:21   0:00 /bin/sh -c ps aux | grep zabbix_server
+root        2102  0.0  0.0   6432   656 pts/0    S+   21:21   0:00 grep zabbix_server

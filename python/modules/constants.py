@@ -3,7 +3,7 @@
 """
 
 # Версия скрипта
-VERSION = "20250809"
+VERSION = "20250825"
 
 # Директории и пути
 DEFAULT_OUTPUT_DIR = "/tmp/zabbix-diag"
@@ -24,7 +24,7 @@ SENSITIVE_CONFIG_PARAMS = {
     'VaultURL', 'VaultToken'
 }
 
-# Database retry configuration
+# Параметры работы с базой данных
 DB_RETRY_ATTEMPTS = 3
 DB_RETRY_DELAY_SECONDS = 60
 DB_CONNECTION_TIMEOUT = 30

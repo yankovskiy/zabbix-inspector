@@ -1,0 +1,6 @@
+type_id,type_name,total,enabled,disabled,unsupported,active_working,enabled_but_unsupported,normal,discovery_rules,prototypes,discovered,unique_hosts,unsupported_percent,working_percent,unsupported_of_enabled_percent
+21,Script,65537,65537,0,0,65274,0,519,259,259,64500,260,0.0,99.6,0.0
+18,Dependent item,186,186,0,0,0,0,162,4,20,0,4,0.0,0.0,0.0
+5,Zabbix internal,60,60,0,0,0,0,60,0,0,0,2,0.0,0.0,0.0
+0,Zabbix agent,4,4,0,0,0,0,4,0,0,0,2,0.0,0.0,0.0
+7,Zabbix agent (active),4,4,0,0,0,0,4,0,0,0,2,0.0,0.0,0.0

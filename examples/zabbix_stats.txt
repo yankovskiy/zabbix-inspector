@@ -1,0 +1,435 @@
+# Zabbix Stats (JSON Protocol)
+# Дата выполнения: 2025-08-25 21:21:25.694382
+# Порт: 10051, Таймаут: 60
+
+Успешно получен JSON ответ:
+{
+  "response": "success",
+  "data": {
+    "boottime": 1756144766,
+    "uptime": 1319,
+    "hosts": 157,
+    "items": 26564,
+    "item_unsupported": 0,
+    "requiredperformance": 442.733333,
+    "preprocessing_queue": 0,
+    "lld_queue": 0,
+    "triggers": 471,
+    "vcache": {
+      "buffer": {
+        "total": 8388224,
+        "free": 8280944,
+        "pfree": 98.721064,
+        "used": 107280,
+        "pused": 1.278936
+      },
+      "cache": {
+        "requests": 12688,
+        "hits": 11459,
+        "misses": 1229,
+        "mode": 0
+      }
+    },
+    "tcache": {
+      "hits": 0,
+      "misses": 0,
+      "all": 0,
+      "phits": 0.0,
+      "pmisses": 0.0,
+      "items": 0,
+      "requests": 0,
+      "pitems": 0.0
+    },
+    "ha": [
+      {
+        "id": "cmeabserx00011rkhc00ywq8r",
+        "name": "node-1",
+        "status": 3,
+        "lastaccess": 1756146083,
+        "address": "localhost:10051",
+        "db_timestamp": 1756146086,
+        "lastaccess_age": 3
+      }
+    ],
+    "rcache": {
+      "total": 268435456,
+      "free": 239320216,
+      "pfree": 89.153728,
+      "used": 29115240,
+      "pused": 10.846272
+    },
+    "version": "6.0.26",
+    "wcache": {
+      "values": {
+        "all": 156015,
+        "float": 156015,
+        "uint": 0,
+        "str": 0,
+        "log": 0,
+        "text": 0,
+        "not supported": 0
+      },
+      "history": {
+        "pfree": 99.850937,
+        "free": 16751824,
+        "total": 16776832,
+        "used": 25008,
+        "pused": 0.149063
+      },
+      "index": {
+        "pfree": 99.175414,
+        "free": 8319040,
+        "total": 8388208,
+        "used": 69168,
+        "pused": 0.824586
+      },
+      "trend": {
+        "pfree": 91.945076,
+        "free": 30851648,
+        "total": 33554432,
+        "used": 2702784,
+        "pused": 8.054924
+      }
+    },
+    "process": {
+      "poller": {
+        "busy": {
+          "avg": 3.202162,
+          "max": 3.225806,
+          "min": 3.175139
+        },
+        "idle": {
+          "avg": 96.797838,
+          "max": 96.824861,
+          "min": 96.774194
+        },
+        "count": 5
+      },
+      "unreachable poller": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "icmp pinger": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "http poller": {
+        "busy": {
+          "avg": 0.034252,
+          "max": 0.034252,
+          "min": 0.034252
+        },
+        "idle": {
+          "avg": 99.965748,
+          "max": 99.965748,
+          "min": 99.965748
+        },
+        "count": 1
+      },
+      "trapper": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 5
+      },
+      "proxy poller": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "escalator": {
+        "busy": {
+          "avg": 0.136963,
+          "max": 0.136963,
+          "min": 0.136963
+        },
+        "idle": {
+          "avg": 99.863037,
+          "max": 99.863037,
+          "min": 99.863037
+        },
+        "count": 1
+      },
+      "history syncer": {
+        "busy": {
+          "avg": 0.582647,
+          "max": 1.070882,
+          "min": 0.373959
+        },
+        "idle": {
+          "avg": 99.417353,
+          "max": 101.35985,
+          "min": 98.929118
+        },
+        "count": 4
+      },
+      "discoverer": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "alerter": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 3
+      },
+      "timer": {
+        "busy": {
+          "avg": 0.017126,
+          "max": 0.017126,
+          "min": 0.017126
+        },
+        "idle": {
+          "avg": 99.982874,
+          "max": 99.982874,
+          "min": 99.982874
+        },
+        "count": 1
+      },
+      "housekeeper": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "configuration syncer": {
+        "busy": {
+          "avg": 0.537996,
+          "max": 0.537996,
+          "min": 0.537996
+        },
+        "idle": {
+          "avg": 99.462004,
+          "max": 99.462004,
+          "min": 99.462004
+        },
+        "count": 1
+      },
+      "self-monitoring": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "task manager": {
+        "busy": {
+          "avg": 0.016863,
+          "max": 0.016863,
+          "min": 0.016863
+        },
+        "idle": {
+          "avg": 99.983137,
+          "max": 99.983137,
+          "min": 99.983137
+        },
+        "count": 1
+      },
+      "alert manager": {
+        "busy": {
+          "avg": 0.03367,
+          "max": 0.03367,
+          "min": 0.03367
+        },
+        "idle": {
+          "avg": 99.96633,
+          "max": 99.96633,
+          "min": 99.96633
+        },
+        "count": 1
+      },
+      "preprocessing manager": {
+        "busy": {
+          "avg": 1.739571,
+          "max": 1.739571,
+          "min": 1.739571
+        },
+        "idle": {
+          "avg": 98.260429,
+          "max": 98.260429,
+          "min": 98.260429
+        },
+        "count": 1
+      },
+      "preprocessing worker": {
+        "busy": {
+          "avg": 0.09007,
+          "max": 0.118223,
+          "min": 0.067556
+        },
+        "idle": {
+          "avg": 99.90993,
+          "max": 99.932444,
+          "min": 99.881777
+        },
+        "count": 3
+      },
+      "lld manager": {
+        "busy": {
+          "avg": 0.016943,
+          "max": 0.016943,
+          "min": 0.016943
+        },
+        "idle": {
+          "avg": 99.983057,
+          "max": 99.983057,
+          "min": 99.983057
+        },
+        "count": 1
+      },
+      "lld worker": {
+        "busy": {
+          "avg": 21.96976,
+          "max": 22.068159,
+          "min": 21.867691
+        },
+        "idle": {
+          "avg": 78.03024,
+          "max": 78.115603,
+          "min": 77.931841
+        },
+        "count": 2
+      },
+      "alert syncer": {
+        "busy": {
+          "avg": 0.20202,
+          "max": 0.20202,
+          "min": 0.20202
+        },
+        "idle": {
+          "avg": 99.79798,
+          "max": 99.79798,
+          "min": 99.79798
+        },
+        "count": 1
+      },
+      "history poller": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 5
+      },
+      "availability manager": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "service manager": {
+        "busy": {
+          "avg": 0.016779,
+          "max": 0.016779,
+          "min": 0.016779
+        },
+        "idle": {
+          "avg": 99.983221,
+          "max": 99.983221,
+          "min": 99.983221
+        },
+        "count": 1
+      },
+      "trigger housekeeper": {
+        "busy": {
+          "avg": 0.0,
+          "max": 0.0,
+          "min": 0.0
+        },
+        "idle": {
+          "avg": 100.0,
+          "max": 100.0,
+          "min": 100.0
+        },
+        "count": 1
+      },
+      "odbc poller": {
+        "busy": {
+          "avg": 0.016906,
+          "max": 0.016906,
+          "min": 0.016906
+        },
+        "idle": {
+          "avg": 99.983094,
+          "max": 99.983094,
+          "min": 99.983094
+        },
+        "count": 1
+      }
+    }
+  }
+}

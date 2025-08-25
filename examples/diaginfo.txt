@@ -1,0 +1,140 @@
+# Команда: /usr/sbin/zabbix_server -c /tmp/zabbix_temp_3qddszd_.conf -R diaginfo
+# Дата выполнения: 2025-08-25 21:21:25.683671
+# Exit code: 0
+
+=== STDOUT ===
+== history cache diagnostic information ==
+Items:443 values:443 time:0.000029
+Memory.data:
+  size: free:16751824 used:17840
+  chunks: free:1 used:448 min:16751824 max:16751824
+    buckets:
+      256+:1
+Memory.index:
+  size: free:8319040 used:61952
+  chunks: free:4 used:448 min:8072 max:8278544
+    buckets:
+      256+:4
+Top.values:
+  itemid:687805 values:1
+  itemid:683725 values:1
+  itemid:672685 values:1
+  itemid:688825 values:1
+  itemid:696565 values:1
+  itemid:682465 values:1
+  itemid:697165 values:1
+  itemid:682405 values:1
+  itemid:680065 values:1
+  itemid:669445 values:1
+  itemid:678565 values:1
+  itemid:654565 values:1
+  itemid:657145 values:1
+  itemid:656065 values:1
+  itemid:661825 values:1
+  itemid:681565 values:1
+  itemid:670465 values:1
+  itemid:665905 values:1
+  itemid:687265 values:1
+  itemid:678085 values:1
+  itemid:674605 values:1
+  itemid:692905 values:1
+  itemid:661345 values:1
+  itemid:691405 values:1
+  itemid:690985 values:1
+==
+== preprocessing diagnostic information ==
+Values:0 done:0 queued:0 processing:0 pending:0 time:0.000274
+Top.values:
+Top.oldest.preproc.values:
+==
+== locks diagnostic information ==
+Locks:
+  ZBX_MUTEX_LOG:0x7f76087d1000
+  ZBX_MUTEX_CACHE:0x7f76087d1028
+  ZBX_MUTEX_TRENDS:0x7f76087d1050
+  ZBX_MUTEX_CACHE_IDS:0x7f76087d1078
+  ZBX_MUTEX_SELFMON:0x7f76087d10a0
+  ZBX_MUTEX_CPUSTATS:0x7f76087d10c8
+  ZBX_MUTEX_DISKSTATS:0x7f76087d10f0
+  ZBX_MUTEX_VALUECACHE:0x7f76087d1118
+  ZBX_MUTEX_VMWARE:0x7f76087d1140
+  ZBX_MUTEX_SQLITE3:0x7f76087d1168
+  ZBX_MUTEX_PROCSTAT:0x7f76087d1190
+  ZBX_MUTEX_PROXY_HISTORY:0x7f76087d11b8
+  ZBX_MUTEX_MODBUS:0x7f76087d11e0
+  ZBX_MUTEX_TREND_FUNC:0x7f76087d1208
+  ZBX_RWLOCK_CONFIG:0x7f76087d1230
+  ZBX_RWLOCK_CONFIG_HISTORY:0x7f76087d1268
+  ZBX_RWLOCK_VALUECACHE:0x7f76087d12a0
+==
+== value cache diagnostic information ==
+Items:296 values:1429 mode:0 time:0.000061
+Memory:
+  size: free:8280944 used:91584
+  chunks: free:3 used:979 min:32 max:8280872
+    buckets:
+      32:1
+      40:1
+      256+:1
+Top.values:
+  itemid:653968 values:103 request.values:100
+  itemid:653976 values:101 request.values:100
+  itemid:653972 values:101 request.values:100
+  itemid:653714 values:101 request.values:0
+  itemid:654906 values:7 request.values:0
+  itemid:654738 values:7 request.values:0
+  itemid:654834 values:7 request.values:0
+  itemid:654818 values:7 request.values:0
+  itemid:654922 values:7 request.values:0
+  itemid:654774 values:7 request.values:0
+  itemid:654890 values:7 request.values:0
+  itemid:654886 values:7 request.values:0
+  itemid:654918 values:7 request.values:0
+  itemid:654826 values:7 request.values:0
+  itemid:654838 values:7 request.values:0
+  itemid:654830 values:7 request.values:0
+  itemid:654766 values:7 request.values:0
+  itemid:654898 values:7 request.values:0
+  itemid:654770 values:7 request.values:0
+  itemid:654730 values:7 request.values:0
+  itemid:654902 values:7 request.values:0
+  itemid:654942 values:7 request.values:0
+  itemid:654822 values:7 request.values:0
+  itemid:654938 values:7 request.values:0
+  itemid:654842 values:7 request.values:0
+Top.request.values:
+  itemid:653968 values:103 request.values:100
+  itemid:653976 values:101 request.values:100
+  itemid:653972 values:101 request.values:100
+  itemid:653973 values:4 request.values:1
+  itemid:653977 values:3 request.values:1
+  itemid:653969 values:3 request.values:1
+  itemid:653714 values:101 request.values:0
+  itemid:654906 values:7 request.values:0
+  itemid:654738 values:7 request.values:0
+  itemid:654834 values:7 request.values:0
+  itemid:654818 values:7 request.values:0
+  itemid:654922 values:7 request.values:0
+  itemid:654774 values:7 request.values:0
+  itemid:654890 values:7 request.values:0
+  itemid:654886 values:7 request.values:0
+  itemid:654918 values:7 request.values:0
+  itemid:654826 values:7 request.values:0
+  itemid:654838 values:7 request.values:0
+  itemid:654830 values:7 request.values:0
+  itemid:654766 values:7 request.values:0
+  itemid:654898 values:7 request.values:0
+  itemid:654770 values:7 request.values:0
+  itemid:654730 values:7 request.values:0
+  itemid:654902 values:7 request.values:0
+  itemid:654942 values:7 request.values:0
+==
+== LLD diagnostic information ==
+Rules:0 values:0 time:0.000238
+Top.values:
+==
+== alerting diagnostic information ==
+Alerts:0 time:0.000415
+Media.alerts:
+Source.alerts:
+==
