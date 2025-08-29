@@ -89,12 +89,12 @@ export const DEFAULT_ZABBIX_URL = 'http://zabbix.local/zabbix';
 // Конфигурация приложения
 export const APP_CONFIG = {
     name: 'Zabbix Inspector',
-    version: '0.1-beta',
+    version: '0.2-beta',
     supportedFormats: ['.zip'],
     maxFileSize: 50 * 1024 * 1024, // 50MB
     animationDelay: 30,
     chartHeight: 350,
-    minDiagCollectorVersion: 20250809, // Минимальная версия сборщика диагностических данных
+    minDiagCollectorVersion: 20250825, // Минимальная версия сборщика диагностических данных
     author: 'Артем Янковский',
     githubUrl: 'https://github.com/yankovskiy/zabbix-inspector'
 };

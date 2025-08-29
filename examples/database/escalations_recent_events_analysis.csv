@@ -1,0 +1,1 @@
+eventid,event_clock,event_time,source,object,objectid,name,severity,value,min_escalation_nextcheck,min_escalation_time,event_age_hours,escalation_next_hours

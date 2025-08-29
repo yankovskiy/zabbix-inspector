@@ -1,140 +1,168 @@
-# Команда: /usr/sbin/zabbix_server -c /tmp/zabbix_temp_3qddszd_.conf -R diaginfo
-# Дата выполнения: 2025-08-25 21:21:25.683671
+# Команда: /usr/sbin/zabbix_server -c /tmp/zabbix_temp_ye4fr16s.conf -R diaginfo
+# Дата выполнения: 2025-08-29 21:00:29.385073
 # Exit code: 0
 
 === STDOUT ===
 == history cache diagnostic information ==
-Items:443 values:443 time:0.000029
+Items:329 values:329 time:0.000041
 Memory.data:
-  size: free:16751824 used:17840
-  chunks: free:1 used:448 min:16751824 max:16751824
+  size: free:16758088 used:13352
+  chunks: free:1 used:337 min:16758088 max:16758088
     buckets:
       256+:1
 Memory.index:
-  size: free:8319040 used:61952
-  chunks: free:4 used:448 min:8072 max:8278544
+  size: free:8286496 used:96320
+  chunks: free:4 used:334 min:944 max:8128336
     buckets:
       256+:4
 Top.values:
-  itemid:687805 values:1
-  itemid:683725 values:1
-  itemid:672685 values:1
-  itemid:688825 values:1
-  itemid:696565 values:1
-  itemid:682465 values:1
-  itemid:697165 values:1
-  itemid:682405 values:1
-  itemid:680065 values:1
-  itemid:669445 values:1
-  itemid:678565 values:1
-  itemid:654565 values:1
-  itemid:657145 values:1
-  itemid:656065 values:1
-  itemid:661825 values:1
-  itemid:681565 values:1
-  itemid:670465 values:1
-  itemid:665905 values:1
-  itemid:687265 values:1
-  itemid:678085 values:1
-  itemid:674605 values:1
-  itemid:692905 values:1
-  itemid:661345 values:1
-  itemid:691405 values:1
-  itemid:690985 values:1
+  itemid:668549 values:1
+  itemid:714269 values:1
+  itemid:705029 values:1
+  itemid:683489 values:1
+  itemid:695369 values:1
+  itemid:654149 values:1
+  itemid:728669 values:1
+  itemid:688529 values:1
+  itemid:730829 values:1
+  itemid:706709 values:1
+  itemid:761669 values:1
+  itemid:686249 values:1
+  itemid:692069 values:1
+  itemid:735509 values:1
+  itemid:760829 values:1
+  itemid:674249 values:1
+  itemid:709409 values:1
+  itemid:669449 values:1
+  itemid:714209 values:1
+  itemid:662849 values:1
+  itemid:654089 values:1
+  itemid:664349 values:1
+  itemid:708569 values:1
+  itemid:742169 values:1
+  itemid:657509 values:1
 ==
 == preprocessing diagnostic information ==
-Values:0 done:0 queued:0 processing:0 pending:0 time:0.000274
+Values:181 done:2 queued:176 processing:3 pending:0 time:0.001090
 Top.values:
+  itemid:760589 values:1 steps:1
+  itemid:699269 values:1 steps:1
+  itemid:751349 values:1 steps:1
+  itemid:667049 values:1 steps:1
+  itemid:665549 values:1 steps:1
+  itemid:726089 values:1 steps:1
+  itemid:703469 values:1 steps:1
+  itemid:654569 values:1 steps:1
+  itemid:700229 values:1 steps:1
+  itemid:741929 values:1 steps:1
+  itemid:681749 values:1 steps:1
+  itemid:676769 values:1 steps:1
+  itemid:660509 values:1 steps:1
+  itemid:751769 values:1 steps:1
+  itemid:727169 values:1 steps:1
+  itemid:681269 values:1 steps:1
+  itemid:707729 values:1 steps:1
+  itemid:714329 values:1 steps:1
+  itemid:761489 values:1 steps:1
+  itemid:727109 values:1 steps:1
+  itemid:661529 values:1 steps:1
+  itemid:690809 values:1 steps:1
+  itemid:682529 values:1 steps:1
+  itemid:738209 values:1 steps:1
+  itemid:739289 values:1 steps:1
 Top.oldest.preproc.values:
 ==
 == locks diagnostic information ==
 Locks:
-  ZBX_MUTEX_LOG:0x7f76087d1000
-  ZBX_MUTEX_CACHE:0x7f76087d1028
-  ZBX_MUTEX_TRENDS:0x7f76087d1050
-  ZBX_MUTEX_CACHE_IDS:0x7f76087d1078
-  ZBX_MUTEX_SELFMON:0x7f76087d10a0
-  ZBX_MUTEX_CPUSTATS:0x7f76087d10c8
-  ZBX_MUTEX_DISKSTATS:0x7f76087d10f0
-  ZBX_MUTEX_VALUECACHE:0x7f76087d1118
-  ZBX_MUTEX_VMWARE:0x7f76087d1140
-  ZBX_MUTEX_SQLITE3:0x7f76087d1168
-  ZBX_MUTEX_PROCSTAT:0x7f76087d1190
-  ZBX_MUTEX_PROXY_HISTORY:0x7f76087d11b8
-  ZBX_MUTEX_MODBUS:0x7f76087d11e0
-  ZBX_MUTEX_TREND_FUNC:0x7f76087d1208
-  ZBX_RWLOCK_CONFIG:0x7f76087d1230
-  ZBX_RWLOCK_CONFIG_HISTORY:0x7f76087d1268
-  ZBX_RWLOCK_VALUECACHE:0x7f76087d12a0
+  ZBX_MUTEX_LOG:0x7ff126303000
+  ZBX_MUTEX_CACHE:0x7ff126303028
+  ZBX_MUTEX_TRENDS:0x7ff126303050
+  ZBX_MUTEX_CACHE_IDS:0x7ff126303078
+  ZBX_MUTEX_SELFMON:0x7ff1263030a0
+  ZBX_MUTEX_CPUSTATS:0x7ff1263030c8
+  ZBX_MUTEX_DISKSTATS:0x7ff1263030f0
+  ZBX_MUTEX_VALUECACHE:0x7ff126303118
+  ZBX_MUTEX_VMWARE:0x7ff126303140
+  ZBX_MUTEX_SQLITE3:0x7ff126303168
+  ZBX_MUTEX_PROCSTAT:0x7ff126303190
+  ZBX_MUTEX_PROXY_HISTORY:0x7ff1263031b8
+  ZBX_MUTEX_MODBUS:0x7ff1263031e0
+  ZBX_MUTEX_TREND_FUNC:0x7ff126303208
+  ZBX_RWLOCK_CONFIG:0x7ff126303230
+  ZBX_RWLOCK_CONFIG_HISTORY:0x7ff126303268
+  ZBX_RWLOCK_VALUECACHE:0x7ff1263032a0
 ==
 == value cache diagnostic information ==
-Items:296 values:1429 mode:0 time:0.000061
+Items:516 values:27117 mode:0 time:0.000068
 Memory:
-  size: free:8280944 used:91584
-  chunks: free:3 used:979 min:32 max:8280872
+  size: free:7684936 used:640472
+  chunks: free:41 used:3886 min:32 max:7677400
     buckets:
-      32:1
-      40:1
-      256+:1
+      32:10
+      64:16
+      112:1
+      192:1
+      224:3
+      256+:10
 Top.values:
-  itemid:653968 values:103 request.values:100
-  itemid:653976 values:101 request.values:100
-  itemid:653972 values:101 request.values:100
-  itemid:653714 values:101 request.values:0
-  itemid:654906 values:7 request.values:0
-  itemid:654738 values:7 request.values:0
-  itemid:654834 values:7 request.values:0
-  itemid:654818 values:7 request.values:0
-  itemid:654922 values:7 request.values:0
-  itemid:654774 values:7 request.values:0
-  itemid:654890 values:7 request.values:0
-  itemid:654886 values:7 request.values:0
-  itemid:654918 values:7 request.values:0
-  itemid:654826 values:7 request.values:0
-  itemid:654838 values:7 request.values:0
-  itemid:654830 values:7 request.values:0
-  itemid:654766 values:7 request.values:0
-  itemid:654898 values:7 request.values:0
-  itemid:654770 values:7 request.values:0
-  itemid:654730 values:7 request.values:0
-  itemid:654902 values:7 request.values:0
-  itemid:654942 values:7 request.values:0
-  itemid:654822 values:7 request.values:0
-  itemid:654938 values:7 request.values:0
-  itemid:654842 values:7 request.values:0
+  itemid:660729 values:104 request.values:100
+  itemid:654738 values:104 request.values:100
+  itemid:691571 values:104 request.values:100
+  itemid:654922 values:104 request.values:100
+  itemid:700456 values:104 request.values:100
+  itemid:724164 values:104 request.values:100
+  itemid:660793 values:104 request.values:100
+  itemid:724457 values:104 request.values:100
+  itemid:660789 values:104 request.values:100
+  itemid:700568 values:104 request.values:100
+  itemid:724321 values:104 request.values:100
+  itemid:724144 values:104 request.values:100
+  itemid:700392 values:104 request.values:100
+  itemid:700564 values:104 request.values:100
+  itemid:724264 values:104 request.values:100
+  itemid:654926 values:104 request.values:100
+  itemid:724152 values:104 request.values:100
+  itemid:700508 values:104 request.values:100
+  itemid:724405 values:104 request.values:100
+  itemid:700452 values:104 request.values:100
+  itemid:724333 values:104 request.values:100
+  itemid:724385 values:104 request.values:100
+  itemid:700440 values:104 request.values:100
+  itemid:691563 values:104 request.values:100
+  itemid:654730 values:104 request.values:100
 Top.request.values:
-  itemid:653968 values:103 request.values:100
-  itemid:653976 values:101 request.values:100
-  itemid:653972 values:101 request.values:100
-  itemid:653973 values:4 request.values:1
-  itemid:653977 values:3 request.values:1
-  itemid:653969 values:3 request.values:1
-  itemid:653714 values:101 request.values:0
-  itemid:654906 values:7 request.values:0
-  itemid:654738 values:7 request.values:0
-  itemid:654834 values:7 request.values:0
-  itemid:654818 values:7 request.values:0
-  itemid:654922 values:7 request.values:0
-  itemid:654774 values:7 request.values:0
-  itemid:654890 values:7 request.values:0
-  itemid:654886 values:7 request.values:0
-  itemid:654918 values:7 request.values:0
-  itemid:654826 values:7 request.values:0
-  itemid:654838 values:7 request.values:0
-  itemid:654830 values:7 request.values:0
-  itemid:654766 values:7 request.values:0
-  itemid:654898 values:7 request.values:0
-  itemid:654770 values:7 request.values:0
-  itemid:654730 values:7 request.values:0
-  itemid:654902 values:7 request.values:0
-  itemid:654942 values:7 request.values:0
+  itemid:660729 values:104 request.values:100
+  itemid:654738 values:104 request.values:100
+  itemid:691571 values:104 request.values:100
+  itemid:654922 values:104 request.values:100
+  itemid:700456 values:104 request.values:100
+  itemid:724164 values:104 request.values:100
+  itemid:660793 values:104 request.values:100
+  itemid:724457 values:104 request.values:100
+  itemid:660789 values:104 request.values:100
+  itemid:700568 values:104 request.values:100
+  itemid:724321 values:104 request.values:100
+  itemid:724144 values:104 request.values:100
+  itemid:700392 values:104 request.values:100
+  itemid:700564 values:104 request.values:100
+  itemid:724264 values:104 request.values:100
+  itemid:654926 values:104 request.values:100
+  itemid:724152 values:104 request.values:100
+  itemid:700508 values:104 request.values:100
+  itemid:724405 values:104 request.values:100
+  itemid:700452 values:104 request.values:100
+  itemid:724333 values:104 request.values:100
+  itemid:724385 values:104 request.values:100
+  itemid:700440 values:104 request.values:100
+  itemid:691563 values:104 request.values:100
+  itemid:654730 values:104 request.values:100
 ==
 == LLD diagnostic information ==
-Rules:0 values:0 time:0.000238
+Rules:0 values:0 time:0.000139
 Top.values:
 ==
 == alerting diagnostic information ==
-Alerts:0 time:0.000415
+Alerts:0 time:0.000175
 Media.alerts:
 Source.alerts:
 ==

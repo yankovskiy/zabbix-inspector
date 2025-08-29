@@ -137,6 +137,7 @@
                             <li><strong>nproc.txt</strong> - количество процессорных ядер</li>
                             <li><strong>cpuinfo.txt</strong> - информация о процессоре</li>
                             <li><strong>final.txt</strong> - дата и время завершения сбора диагностической информации</li>
+                            <li><strong>database/*.csv</strong> - результаты выполнения диагностических запросов к БД</li>
                         </ul>
                     </div>
                 </div>
@@ -444,13 +445,24 @@
                             
                             <div class="code-block">
                                 <div class="code-header">
-                                    <span>Все параметры:</span>
-                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120')">
+                                    <span>С диагностикой базы данных:</span>
+                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py --db --sql-dir python/sql')">
                                         <span class="copy-icon">📋</span>
                                         <span class="copy-text">Копировать</span>
                                     </button>
                                 </div>
-                                <code>python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120</code>
+                                <code>python3 python/zdiag.py --db --sql-dir python/sql</code>
+                            </div>
+                            
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Все параметры:</span>
+                                    <button class="copy-button" onclick="copyToClipboard(this, 'python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120 --db')">
+                                        <span class="copy-icon">📋</span>
+                                        <span class="copy-text">Копировать</span>
+                                    </button>
+                                </div>
+                                <code>python3 python/zdiag.py --output-dir /tmp/diag --stats-timeout 120 --db</code>
                             </div>
 
                             <p><strong>Параметры командной строки:</strong></p>
@@ -458,6 +470,9 @@
                                 <li><code>--output-dir</code> — директория для сохранения результатов (по умолчанию: /tmp/zabbix-diag)</li>
                                 <li><code>--stats-timeout</code> — таймаут для сбора статистики в секундах (по умолчанию: 60)</li>
                                 <li><code>--keep-temp-config</code> — сохранить временный конфигурационный файл</li>
+                                <li><code>--db</code> — включить сбор диагностических данных из базы данных</li>
+                                <li><code>--db-init</code> — настроить подключение к базе данных (интерактивно)</li>
+                                <li><code>--sql-dir</code> — директория с SQL-запросами для диагностики БД</li>
                                 <li><code>--version</code> — получить версию сборщика</li>
                             </ul>
                         </div>
@@ -512,6 +527,7 @@
                                 <li><code>nproc.txt</code> — количество процессорных ядер</li>
                                 <li><code>cpuinfo.txt</code> — информация о процессоре</li>
                                 <li><code>final.txt</code> — дата и время завершения сбора диагностической информации</li>
+                                <li><code>database/*.csv</code> — результаты выполнения диагностических запросов к БД</li>
                             </ul>
                         </div>
                     </div>

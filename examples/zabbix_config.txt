@@ -1,7 +1,7 @@
 # Zabbix Server Configuration (filtered)
-# Дата выполнения: 2025-08-25 21:21:25.694835
+# Дата выполнения: 2025-08-29 21:00:29.411487
 # Исходный файл: /etc/zabbix/zabbix_server.conf
-# Исключены чувствительные параметры: VaultToken, DBHost, DBPassword, StatsAllowedIP, VaultURL, DBUser, DBName
+# Исключены чувствительные параметры: DBUser, DBName, DBPassword, DBHost, VaultURL, StatsAllowedIP, VaultToken
 
 LogFile=/var/log/zabbix/zabbix_server.log
 LogFileSize=0

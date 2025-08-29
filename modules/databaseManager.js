@@ -8,7 +8,9 @@ export class DatabaseManager {
         this.sortDirection = 'asc';
         this.tabDisplayNames = {
             'hosts_top_by_metrics': 'Топ хостов по метрикам',
-            'item_types_detailed_stats': 'Типы элементов данных'
+            'item_types_detailed_stats': 'Типы элементов данных',
+            'escalations_recent_events_analysis': 'Активные эскалации',
+            'triggers_performance_24h_stats': 'Производительность триггеров'
         };
     }
 
