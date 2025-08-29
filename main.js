@@ -6,6 +6,7 @@ import { Navigation } from './modules/navigation.js';
 import { ProcessTable } from './modules/processTable.js';
 import { ZabbixUrlManager } from './modules/zabbixUrlManager.js';
 import { ConfigManager } from './modules/configManager.js';
+import { DatabaseManager } from './modules/databaseManager.js';
 import { utils } from './utils/helpers.js';
 import { APP_CONFIG, ANIMATION_DELAYS } from './config/constants.js';
 
@@ -22,6 +23,7 @@ class ZabbixAnalyzer {
         this.processTable = new ProcessTable();
         this.urlManager = new ZabbixUrlManager();
         this.configManager = new ConfigManager();
+        this.databaseManager = new DatabaseManager();
         this.fileUploader = new FileUploader(this);
 
         this.init();
@@ -78,12 +80,15 @@ class ZabbixAnalyzer {
     }
 
     updateAllPages() {
+        console.log('updateAllPages called, diagnosticData keys:', Object.keys(this.diagnosticData));
         this.uiUpdater.updateOverviewPage(this.diagnosticData);
         this.uiUpdater.updatePerformancePage(this.diagnosticData);
         this.uiUpdater.updateDiagnosticsPage(this.diagnosticData);
         this.uiUpdater.updateVmstatPage(this.diagnosticData);
         this.processTable.updateTable(this.diagnosticData.processes);
         this.configManager.updateConfigPage(this.diagnosticData);
+        console.log('Calling updateDatabasePage...');
+        this.updateDatabasePage(this.diagnosticData);
         this.chartManager.updateCharts(this.diagnosticData);
         this.chartManager.createVmstatCharts(this.diagnosticData);
     }
@@ -103,6 +108,17 @@ class ZabbixAnalyzer {
 
         // Вернуться на страницу загрузки
         this.navigation.showPage('upload');
+    }
+
+    updateDatabasePage(diagnosticData) {
+        if (diagnosticData.database && Object.keys(diagnosticData.database).length > 0) {
+            console.log('Database data found:', Object.keys(diagnosticData.database));
+            this.databaseManager.parseDatabaseFiles(diagnosticData.database);
+            this.databaseManager.createDatabasePage();
+        } else {
+            console.log('No database data found');
+            this.databaseManager.createDatabasePage();
+        }
     }
 
     getZabbixUrl() {

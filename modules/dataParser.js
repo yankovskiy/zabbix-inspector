@@ -36,6 +36,13 @@ export class DataParser {
                 diagnosticData.nproc = this.parseNproc(content);
             } else if (fileName.includes(this.filePatterns.final)) {
                 diagnosticData.final = this.parseFinal(content);
+            } else if (fileName.includes('/database/') && fileName.endsWith('.csv')) {
+                console.log('DataParser: found database file:', fileName, 'content length:', content.length);
+                if (!diagnosticData.database) {
+                    diagnosticData.database = {};
+                }
+                diagnosticData.database[fileName] = content;
+                console.log('DataParser: added to diagnosticData.database, current keys:', Object.keys(diagnosticData.database));
             }
         }
 
